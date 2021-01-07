@@ -1,5 +1,3 @@
-class DuplicateGenre extends Error {
-
-}
+class DuplicateGenre extends Error {}
 
 module.exports = DuplicateGenre;

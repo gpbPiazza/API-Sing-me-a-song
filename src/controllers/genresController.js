@@ -10,6 +10,14 @@ class GenresController {
     const genre = await Genres.create({ name });
     return genre;
   }
+
+  getAll() {
+    return Genres.findAll({
+      order: [
+        ['name', 'ASC'],
+      ],
+    });
+  }
 }
 
 module.exports = new GenresController();

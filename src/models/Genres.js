@@ -1,9 +1,7 @@
 const { Sequelize } = require('sequelize');
 const sequelize = require('../utils/database');
 
-class Genres extends Sequelize.Model {
-
-}
+class Genres extends Sequelize.Model {}
 
 Genres.init({
   id: {
