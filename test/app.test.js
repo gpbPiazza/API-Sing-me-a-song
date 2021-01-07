@@ -19,7 +19,7 @@ async function cleanDataBase() {
 }
 
 beforeAll(async () => {
-  cleanDataBase();
+  await cleanDataBase();
 });
 
 afterAll(async () => {
@@ -50,5 +50,12 @@ describe('POST /genres', () => {
     };
     const response = await test.post('/genres').send(body);
     expect(response.status).toBe(409);
+  });
+});
+
+describe('GET /genres', () => {
+  it('Should response status 200 when the user have internet', async () => {
+    const response = await test.get('/genres');
+    expect(response.status).toBe(200);
   });
 });
