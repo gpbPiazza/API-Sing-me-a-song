@@ -29,4 +29,19 @@ router.post('/', async (req, res) => {
   }
 });
 
+router.post('/:id/upvote', async (req, res) => {
+  if (!req.params.id) return res.status(422).send({ error: "Must contain recommendationId params" });
+
+  try {
+    const recommendationId = parseInt(req.params.id);
+    const recomendation = await RecomendationsController.upVote(recommendationId);
+
+    return res.status(200).send(recomendation);
+  } catch (exception) {
+    console.error(exception);
+   
+    return res.status(500).send({ error: 'call the responsible person' });
+  }
+});
+
 module.exports = router;

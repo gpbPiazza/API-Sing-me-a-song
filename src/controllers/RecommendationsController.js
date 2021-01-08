@@ -5,6 +5,7 @@ const InvalidArrayOfIdsError = require('../error/InvalidArrayOfIdsError');
 const Genre = require('../models/Genre');
 const GenresIdsNotFoundError = require('../error/GenresIdsNotFoundError');
 const RecommendationGenre = require('../models/RecommendationGenre');
+const RecommendationNotFoundError = require('../error/RecommendationNotFoundError');
 
 class RecommendationsController {
   async create(recomendationData) {
@@ -30,6 +31,13 @@ class RecommendationsController {
     }));
 
     return { ...recommendation.dataValues, genresIds };
+  }
+
+  async upVote(recommendationId) {
+    const recommendation = await Recommendation.findByPk(recommendationId);
+    console.log(findById)
+    if (!recommendation) throw new RecommendationNotFoundError();
+
   }
 }
 
