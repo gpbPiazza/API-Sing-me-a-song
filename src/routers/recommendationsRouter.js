@@ -18,9 +18,7 @@ router.post('/', async (req, res) => {
     return res.status(201).send(recomendation);
   } catch (exception) {
     console.error(exception);
-    if (exception instanceof DuplicateDataError) {
-      return res.status(409).send({ error: 'This recommendation name its alredy created' });
-    } if (exception instanceof InvalidArrayOfIdsError) {
+    if (exception instanceof InvalidArrayOfIdsError) {
       return res.status(404).send({ error: 'genresIds array should only contain integers' });
     } if (exception instanceof GenresIdsNotFoundError) {
       return res.status(404).send({ error: 'Ids not found' });
@@ -30,16 +28,16 @@ router.post('/', async (req, res) => {
 });
 
 router.post('/:id/upvote', async (req, res) => {
-  if (!req.params.id) return res.status(422).send({ error: "Must contain recommendationId params" });
+  if (!req.params.id) return res.status(422).send({ error: 'Must contain recommendationId params' });
 
   try {
-    const recommendationId = parseInt(req.params.id);
+    const recommendationId = parseInt(req.params.id, 10);
     const recomendation = await RecomendationsController.upVote(recommendationId);
 
     return res.status(200).send(recomendation);
   } catch (exception) {
     console.error(exception);
-   
+
     return res.status(500).send({ error: 'call the responsible person' });
   }
 });

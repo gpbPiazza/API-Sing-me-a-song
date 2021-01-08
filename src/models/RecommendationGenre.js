@@ -10,8 +10,8 @@ RecommendationGenre.init({
     allowNull: false,
     autoIncrement: true,
   },
-  recommendationsId: Sequelize.INTEGER,
-  genresId: Sequelize.INTEGER,
+  recommendationId: Sequelize.INTEGER,
+  genreId: Sequelize.INTEGER,
 }, {
   sequelize,
   timestamps: false,

@@ -7,7 +7,7 @@ module.exports = {
         allowNull: false,
         primaryKey: true,
       },
-      recommendationsId: {
+      recommendationId: {
         type: Sequelize.INTEGER,
         references: {
           model: 'recommendations',
@@ -16,7 +16,7 @@ module.exports = {
         allowNull: false,
       },
 
-      genresId: {
+      genreId: {
         type: Sequelize.INTEGER,
         references: {
           model: 'genres',

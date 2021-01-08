@@ -11,9 +11,6 @@ class RecommendationsController {
   async create(recomendationData) {
     const { name, genresIds, youtubeLink } = recomendationData;
 
-    const findByName = await Recommendation.findOne({ where: { name } });
-    if (findByName) throw new DuplicateDataError();
-
     if (genresIds.length === 0) throw new InvalidArrayOfIdsError();
     const arrayDontHaveIntegers = genresIds.some((element) => {
       if (typeof element !== 'number') return true;
@@ -25,21 +22,19 @@ class RecommendationsController {
     if (findIdsByIds.length !== genresIds.length) throw new GenresIdsNotFoundError();
 
     const recommendation = await Recommendation.create({ name, youtubeLink });
+    const { id } = recommendation.dataValues;
 
-    const zape = await Promise.all(genresIds.map(async (element) => {
-      await RecommendationGenre.create({ recommendationsId: recommendation.id, genresId: element });
+    await Promise.all(genresIds.map(async (element) => {
+      await RecommendationGenre.create({ recommendationId: id, genreId: element });
     }));
-
-    console.log(zape, 'aaaaaaaaaaaaa');
 
     return { ...recommendation.dataValues, genresIds };
   }
 
   async upVote(recommendationId) {
     const recommendation = await Recommendation.findByPk(recommendationId);
-    console.log(findById)
+    console.log(recommendation);
     if (!recommendation) throw new RecommendationNotFoundError();
-
   }
 }
 
