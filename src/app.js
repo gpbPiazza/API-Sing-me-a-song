@@ -2,10 +2,10 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 
+require('./utils/loadRelationships');
+
 const genresRouter = require('./routers/genresRouter');
 const recommendationsRouter = require('./routers/recommendationsRouter');
-
-require('./utils/loadRelationships');
 
 const app = express();
 

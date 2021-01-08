@@ -25,9 +25,11 @@ class RecommendationsController {
 
     const recommendation = await Recommendation.create({ name, youtubeLink });
 
-    await Promise.all(genresIds.map(async (element) => {
-      RecommendationGenre.create({ recommendationsId: recommendation.id, genresId: element });
+    const zape = await Promise.all(genresIds.map(async (element) => {
+      await RecommendationGenre.create({ recommendationsId: recommendation.id, genresId: element });
     }));
+
+    console.log(zape, 'aaaaaaaaaaaaa');
 
     return { ...recommendation.dataValues, genresIds };
   }

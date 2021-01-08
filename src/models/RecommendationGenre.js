@@ -15,7 +15,7 @@ RecommendationGenre.init({
 }, {
   sequelize,
   timestamps: false,
-  modelName: 'recommendationGenre',
+  modelName: 'recommendationsGenre',
 });
 
 module.exports = RecommendationGenre;
