@@ -1,5 +1,4 @@
 /* eslint-disable class-methods-use-this */
-const DuplicateDataError = require('../error/DuplicateDataError');
 const Recommendation = require('../models/Recommendation');
 const InvalidArrayOfIdsError = require('../error/InvalidArrayOfIdsError');
 const Genre = require('../models/Genre');
@@ -33,8 +32,26 @@ class RecommendationsController {
 
   async upVote(recommendationId) {
     const recommendation = await Recommendation.findByPk(recommendationId);
-    console.log(recommendation);
     if (!recommendation) throw new RecommendationNotFoundError();
+
+    recommendation.score += 1;
+
+    await recommendation.save();
+    return null;
+  }
+
+  async downvote(recommendationId) {
+    const recommendation = await Recommendation.findByPk(recommendationId);
+    if (!recommendation) throw new RecommendationNotFoundError();
+
+    recommendation.score -= 1;
+
+    if (recommendation.score !== -5) {
+      return recommendation.save();
+    }
+    await RecommendationGenre.destroy({ where: { recommendationId } });
+    await recommendation.destroy();
+    return null;
   }
 }
 
