@@ -1,9 +1,9 @@
 const joi = require('joi');
 
-const createGenres = joi.object({
+const createGenre = joi.object({
   name: joi.string().required(),
 });
 
 module.exports = {
-  createGenres,
+  createGenre,
 };
