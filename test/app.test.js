@@ -16,7 +16,8 @@ const db = new Pool({
   connectionString: process.env.DATABASE_URL,
 });
 
-let genreId = 0;
+let genreId;
+let recommendationId;
 
 async function cleanDataBase() {
   await db.query('DELETE FROM recomendationsGenres;');
@@ -75,6 +76,7 @@ describe('POST /recommendations', () => {
       youtubeLink: 'https://www.youtube.com/watch?v=pJuQylOmMrQ&list=RDMMpJuQylOmMrQ&start_radio=1&ab_channel=MarcRebillet',
     };
     const response = await test.post('/recommendations').send(body);
+    recommendationId = response.body.id;
     expect(response.status).toBe(201);
   });
 
@@ -95,6 +97,30 @@ describe('POST /recommendations', () => {
       youtubeLink: 'https://www.notion.so/Projeto-015-API-Sing-Me-a-Song-49b593fc056b4ebeb7ad26b3ab65f224',
     };
     const response = await test.post('/recommendations').send(body);
+    expect(response.status).toBe(404);
+  });
+});
+
+describe('POST /recommendations/:id/upvote', () => {
+  it('Should response status 200 when the recommendation exists', async () => {
+    const response = await test.post(`/recommendations/${recommendationId}/upvote`);
+    expect(response.status).toBe(200);
+  });
+
+  it('Should response status 404 when the recommendation does not exists', async () => {
+    const response = await test.post('/recommendations/120120/upvote');
+    expect(response.status).toBe(404);
+  });
+});
+
+describe('POST /recommendations/:id/donwvote', () => {
+  it('Should response status 200 when the recommendation exists and have score bigger than -5', async () => {
+    const response = await test.post(`/recommendations/${recommendationId}/donwvote`);
+    expect(response.status).toBe(200);
+  });
+
+  it('Should response status 404 when the recommendation does not exists or score  is less than -5', async () => {
+    const response = await test.post('/recommendations/120120/donwvote');
     expect(response.status).toBe(404);
   });
 });

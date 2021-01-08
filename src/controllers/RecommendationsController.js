@@ -46,12 +46,51 @@ class RecommendationsController {
 
     recommendation.score -= 1;
 
-    if (recommendation.score !== -5) {
-      return recommendation.save();
+    if (recommendation.score < -5) {
+      await RecommendationGenre.destroy({ where: { recommendationId } });
+      await recommendation.destroy();
     }
-    await RecommendationGenre.destroy({ where: { recommendationId } });
-    await recommendation.destroy();
+    await recommendation.save();
     return null;
+  }
+
+  calculateRecomendation(recomendations) {
+    const numberChance = Math.random() * 100;
+    const randomElement = (currentArray) => Math.floor(Math.random() * currentArray.length);
+
+    const rawRandomRecommendation = recomendations[randomElement(recomendations)];
+
+    const scoreBiggerThenTen = (element) => element.score > 10;
+    const scoreLessthanTen = (element) => element.score < 10;
+
+    const filterRecomendations = (functionFilter) => {
+      const filtredRecommendations = recomendations.filter(functionFilter);
+      const elementCalculated = filtredRecommendations[randomElement(filtredRecommendations)];
+      if (!elementCalculated) return rawRandomRecommendation;
+      return elementCalculated;
+    };
+
+    if (numberChance < 70) {
+      return filterRecomendations(scoreBiggerThenTen);
+    }
+    if (numberChance < 99) {
+      return filterRecomendations(scoreLessthanTen);
+    }
+    return rawRandomRecommendation;
+  }
+
+  async getRandomRecommendation() {
+    const recomendations = await Recommendation.findAll();
+    if (!recomendations) throw new RecommendationNotFoundError();
+
+    const recomendation = this.calculateRecomendation(recomendations);
+
+    const recomendationWithGenresIds = await Recommendation.findByPk(
+      recomendation.id,
+      { include: Genre },
+    );
+
+    return recomendationWithGenresIds;
   }
 }
 

@@ -61,4 +61,18 @@ router.post('/:id/downvote', async (req, res) => {
   }
 });
 
+router.get('/random', async (req, res) => {
+  try {
+    const recomendation = await RecomendationsController.getRandomRecommendation();
+
+    return res.status(200).send(recomendation);
+  } catch (exception) {
+    console.error(exception);
+    if (exception instanceof RecommendationNotFoundError) {
+      return res.status(404).send({ error: 'recommendation not found' });
+    }
+    return res.status(500).send({ error: 'call the responsible person' });
+  }
+});
+
 module.exports = router;
