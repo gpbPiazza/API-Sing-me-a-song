@@ -1,6 +1,6 @@
 # Projeto - API- Sing me a song
 <p align="center">
-  <img src="https://www.clipartmax.com/png/middle/268-2688484_musical-notes-beamed-free-vector-graphic-on-pixabay-cifras-de-musica-desenho.png" width="175" alt="cifra" />
+  <img src="https://64.media.tumblr.com/0b35978929f4a9594c1dceefe86eee35/tumblr_o1laev7QQm1t0g7nko1_640.png" width="175" alt="cifra" />
 </p>
   
 
@@ -16,6 +16,22 @@
 - **POST** `**/recommendations/:id/upvote**` and `**/recommendations/:id/downvote**`
 - **GET** `**/recommendations/random**`
 
+### Busines Rules
+As a user i:
+- Would like create a new genre if this genre doesnt exist.
+- Want se all genres created.
+- Would like to create one recommendation that must contain one genre.
+- Would like to upvote this recommendation or downvote, if this recommendation reachs downvotes equal a -5 the recomendation is deleted.
+- Want receive one random recomendation, folowing this rules.
+
+Rules for a random recommendation:
+- **70% of times**: one músic with score bigger than 10 must be recomendated randomly.
+- **30% of times**: one músic with score between -5 and 10 must be recomendated randomly.
+- In case if any music got in this scores, must return a random music independent his score.
+- In case of any recommendation wheren't created, must return error status 404.
+
+### Documentaion:
+
 ### Tech Stack
 Languages:<br>
 <p align="center">
@@ -24,11 +40,12 @@ Languages:<br>
 
 
 The following tools and frameworks were used in the construction of the project:<br> 
-    <img src="https://img.shields.io/badge/node.ts%20-%2343853D.svg?&style=for-the-badge&logo=node&logoColor=white"/>
+    <img src="https://img.shields.io/badge/node.js%20-%2343853D.svg?&style=for-the-badge&logo=node&logoColor=white"/>
     <img src='https://img.shields.io/badge/express%20-%2320232a.svg?&style=for-the-badge&logo=express&logoColor=%2361DAFB'/>
     <img src='https://img.shields.io/badge/yarn%20-%2320232a.svg?&style=for-the-badge&logo=yarn&logoColor=%2361DAFB'/>
     <img src='https://img.shields.io/badge/jest%20-%2320232a.svg?&style=for-the-badge&logo=jest&logoColor=%2361DAFB'/>
-        <img src='https://img.shields.io/badge/sequelize%20-%2320232a.svg?&style=for-the-badge&logo=sequelize&logoColor=%2361DAFB'/>
+    <img src='https://img.shields.io/badge/sequelize%20-%2320232a.svg?&style=for-the-badge&logo=sequelize&logoColor=%2361DAFB'/>
+    <img src='https://img.shields.io/badge/postgreSQL%20-%2320232a.svg?&style=for-the-badge&logo=postgreSQL&logoColor=%2361DAFB'/>
 
 ### Authors
 ---
