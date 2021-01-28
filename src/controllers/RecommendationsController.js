@@ -60,21 +60,21 @@ class RecommendationsController {
 
     const rawRandomRecommendation = recomendations[randomElement(recomendations)];
 
-    const scoreBiggerThenTen = (element) => element.score > 10;
-    const scoreLessthanTen = (element) => element.score < 10;
+    const scoreBiggerThanTen = (element) => element.score > 10;
+    const scoreLessThanTen = (element) => element.score < 10;
 
     const filterRecomendations = (functionFilter) => {
-      const filtredRecommendations = recomendations.filter(functionFilter);
-      const elementCalculated = filtredRecommendations[randomElement(filtredRecommendations)];
+      const filteredRecommendations = recomendations.filter(functionFilter);
+      const elementCalculated = filteredRecommendations[randomElement(filteredRecommendations)];
       if (!elementCalculated) return rawRandomRecommendation;
       return elementCalculated;
     };
 
     if (numberChance < 70) {
-      return filterRecomendations(scoreBiggerThenTen);
+      return filterRecomendations(scoreBiggerThanTen);
     }
     if (numberChance < 100) {
-      return filterRecomendations(scoreLessthanTen);
+      return filterRecomendations(scoreLessThanTen);
     }
     return rawRandomRecommendation;
   }
