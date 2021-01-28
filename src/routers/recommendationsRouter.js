@@ -68,6 +68,9 @@ router.get('/random', async (req, res) => {
     return res.status(200).send(recomendation);
   } catch (exception) {
     console.error(exception);
+    if (exception instanceof RecommendationNotFoundError) {
+      return res.status(404).send({ error: 'recommendations not found' });
+    }
     return res.status(500).send({ error: 'call the responsible person, endPoint:/recomendations/random' });
   }
 });

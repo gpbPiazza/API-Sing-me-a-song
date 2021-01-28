@@ -81,6 +81,7 @@ class RecommendationsController {
 
   async getRandomRecommendation() {
     const recomendations = await Recommendation.findAll();
+    if (!recomendations) throw new RecommendationNotFoundError();
 
     const recomendation = this.calculateRecomendation(recomendations);
 
