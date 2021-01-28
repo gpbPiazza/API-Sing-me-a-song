@@ -73,7 +73,7 @@ class RecommendationsController {
     if (numberChance < 70) {
       return filterRecomendations(scoreBiggerThenTen);
     }
-    if (numberChance < 99) {
+    if (numberChance < 100) {
       return filterRecomendations(scoreLessthanTen);
     }
     return rawRandomRecommendation;
@@ -81,7 +81,6 @@ class RecommendationsController {
 
   async getRandomRecommendation() {
     const recomendations = await Recommendation.findAll();
-    if (!recomendations) throw new RecommendationNotFoundError();
 
     const recomendation = this.calculateRecomendation(recomendations);
 

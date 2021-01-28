@@ -18,7 +18,7 @@ router.post('/', async (req, res) => {
     if (exception instanceof DuplicateDataError) {
       return res.status(409).send({ error: 'This genre name its alredy created' });
     }
-    return res.status(500).send({ error: 'call the responsible person' });
+    return res.status(500).send({ error: 'call the responsible person, Post, endPoint:/genres' });
   }
 });
 
@@ -28,7 +28,7 @@ router.get('/', async (req, res) => {
     return res.status(200).send(genres);
   } catch (exception) {
     console.error(exception);
-    return res.status(500).send({ error: 'call the responsible person' });
+    return res.status(500).send({ error: 'call the responsible person, Get, endPoint:/genres' });
   }
 });
 
