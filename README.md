@@ -1,4 +1,4 @@
-# Projeto - API- Sing me a song
+# API- Sing me a song
 <p align="center">
   <img src="https://64.media.tumblr.com/0b35978929f4a9594c1dceefe86eee35/tumblr_o1laev7QQm1t0g7nko1_640.png" width="175" alt="cifra" />
 </p>
@@ -21,7 +21,7 @@ As a user i:
 - Would like create a new genre if this genre doesnt exist.
 - Want se all genres created.
 - Would like to create one recommendation that must contain one genre.
-- Would like to upvote this recommendation or downvote, if this recommendation reachs downvotes equal a -5 the recomendation is deleted.
+- Would like to up vote this recommendation or down vote, if this recommendation reachs score equal a -5 the recomendation is deleted.
 - Want receive one random recomendation, folowing this rules.
 
 Rules for a random recommendation:
@@ -31,6 +31,8 @@ Rules for a random recommendation:
 - In case of any recommendation wheren't created, must return error status 404.
 
 ### Documentaion:
+
+<a href="https://www.notion.so/Sing-me-a-song-documentation-aa54896e890a43dbba26e2bf3be66b3f">"Link"</a> 
 
 ### Tech Stack
 Languages:<br>
