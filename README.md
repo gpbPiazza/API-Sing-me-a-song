@@ -10,11 +10,11 @@
 </p>
 
 ### Features
-- **POST** `**/genres**`
-- **GET** `**/genres**`
-- **POST** `**/recommendations**`
-- **POST** `**/recommendations/:id/upvote**` and `**/recommendations/:id/downvote**`
-- **GET** `**/recommendations/random**`
+- **POST** `/genres`
+- **GET** `/genres`
+- **POST** `/recommendations`
+- **POST** `/recommendations/:id/upvote` and `/recommendations/:id/downvote`
+- **GET** `/recommendations/random`
 
 ### Busines Rules
 As a user i:
