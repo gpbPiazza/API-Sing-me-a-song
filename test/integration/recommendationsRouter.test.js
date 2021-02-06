@@ -46,47 +46,47 @@ describe('POST /recommendations', () => {
     },
   );
 
-//   it('Should response status 422 when youTubeLink does not come from youtube', async () => {
-//     const body = {
-//       name: 'zape',
-//       genresIds: [genreId],
-//       youtubeLink: 'https://www.notion.so/Projeto-015-API-Sing-Me-a-Song-49b593fc056b4ebeb7ad26b3ab65f224',
-//     };
-//     const response = await test.post('/recommendations').send(body);
-//     expect(response.status).toBe(422);
-//   });
+  it('Should response status 422 when youTubeLink does not come from youtube', async () => {
+    const body = {
+      name: 'zape',
+      genresIds: [genreId],
+      youtubeLink: 'https://www.notion.so/Projeto-015-API-Sing-Me-a-Song-49b593fc056b4ebeb7ad26b3ab65f224',
+    };
+    const response = await test.post('/recommendations').send(body);
+    expect(response.status).toBe(422);
+  });
 
-//   it('Should response status 404 when genresIds are invalid', async () => {
-//     const body = {
-//       name: 'zape',
-//       genresIds: [22, 'zape', 30],
-//       youtubeLink: 'https://www.notion.so/Projeto-015-API-Sing-Me-a-Song-49b593fc056b4ebeb7ad26b3ab65f224',
-//     };
-//     const response = await test.post('/recommendations').send(body);
-//     expect(response.status).toBe(404);
-//   });
-// });
+  //   it('Should response status 404 when genresIds are invalid', async () => {
+  //     const body = {
+  //       name: 'zape',
+  //       genresIds: [22, 'zape', 30],
+  //       youtubeLink: 'https://www.notion.so/Projeto-015-API-Sing-Me-a-Song-49b593fc056b4ebeb7ad26b3ab65f224',
+  //     };
+  //     const response = await test.post('/recommendations').send(body);
+  //     expect(response.status).toBe(404);
+  //   });
+  // });
 
-// describe('POST /recommendations/:id/upvote', () => {
-//   it('Should response status 200 when the recommendation exists', async () => {
-//     const response = await test.post(`/recommendations/${recommendationId}/upvote`);
-//     expect(response.status).toBe(200);
-//   });
+  // describe('POST /recommendations/:id/upvote', () => {
+  //   it('Should response status 200 when the recommendation exists', async () => {
+  //     const response = await test.post(`/recommendations/${recommendationId}/upvote`);
+  //     expect(response.status).toBe(200);
+  //   });
 
-//   it('Should response status 404 when the recommendation does not exists', async () => {
-//     const response = await test.post('/recommendations/120120/upvote');
-//     expect(response.status).toBe(404);
-//   });
-// });
+  //   it('Should response status 404 when the recommendation does not exists', async () => {
+  //     const response = await test.post('/recommendations/120120/upvote');
+  //     expect(response.status).toBe(404);
+  //   });
+  // });
 
-// describe('POST /recommendations/:id/donwvote', () => {
-//   it('Should response status 200 when the recommendation exists and have score bigger than -5', async () => {
-//     const response = await test.post(`/recommendations/${recommendationId}/donwvote`);
-//     expect(response.status).toBe(200);
-//   });
+  // describe('POST /recommendations/:id/donwvote', () => {
+  //   it('Should response status 200 when the recommendation exists and have score bigger than -5', async () => {
+  //     const response = await test.post(`/recommendations/${recommendationId}/donwvote`);
+  //     expect(response.status).toBe(200);
+  //   });
 
 //   it('Should response status 404 when the recommendation does not exists or score  is less than -5', async () => {
 //     const response = await test.post('/recommendations/120120/donwvote');
 //     expect(response.status).toBe(404);
 //   });
-// });
+});
