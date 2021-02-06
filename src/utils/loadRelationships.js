@@ -1,6 +1,6 @@
 const Genre = require('../models/Genre');
-const RecommendationGenre = require('../models/RecommendationGenre');
+const RecommendationsGenre = require('../models/RecommendationsGenre');
 const Recommendation = require('../models/Recommendation');
 
-Recommendation.belongsToMany(Genre, { through: RecommendationGenre });
-Genre.belongsToMany(Recommendation, { through: RecommendationGenre });
+Recommendation.belongsToMany(Genre, { through: RecommendationsGenre });
+Genre.belongsToMany(Recommendation, { through: RecommendationsGenre });

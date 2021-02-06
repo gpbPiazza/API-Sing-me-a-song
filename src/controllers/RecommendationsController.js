@@ -3,7 +3,7 @@ const Recommendation = require('../models/Recommendation');
 const InvalidArrayOfIdsError = require('../error/InvalidArrayOfIdsError');
 const Genre = require('../models/Genre');
 const GenresIdsNotFoundError = require('../error/GenresIdsNotFoundError');
-const RecommendationGenre = require('../models/RecommendationGenre');
+const RecommendationsGenre = require('../models/RecommendationsGenre');
 const RecommendationNotFoundError = require('../error/RecommendationNotFoundError');
 
 class RecommendationsController {
@@ -24,7 +24,7 @@ class RecommendationsController {
     const { id } = recommendation.dataValues;
 
     await Promise.all(genresIds.map(async (element) => {
-      await RecommendationGenre.create({ recommendationId: id, genreId: element });
+      await RecommendationsGenre.create({ recommendationId: id, genreId: element });
     }));
 
     return { ...recommendation.dataValues, genresIds };
@@ -47,7 +47,7 @@ class RecommendationsController {
     recommendation.score -= 1;
 
     if (recommendation.score < -5) {
-      await RecommendationGenre.destroy({ where: { recommendationId } });
+      await RecommendationsGenre.destroy({ where: { recommendationId } });
       await recommendation.destroy();
     }
     await recommendation.save();

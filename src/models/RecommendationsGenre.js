@@ -1,9 +1,9 @@
 const { Sequelize } = require('sequelize');
 const sequelize = require('../utils/database');
 
-class RecommendationGenre extends Sequelize.Model {}
+class RecommendationsGenre extends Sequelize.Model {}
 
-RecommendationGenre.init({
+RecommendationsGenre.init({
   id: {
     type: Sequelize.INTEGER,
     primaryKey: true,
@@ -18,4 +18,4 @@ RecommendationGenre.init({
   modelName: 'recommendationsGenre',
 });
 
-module.exports = RecommendationGenre;
+module.exports = RecommendationsGenre;
