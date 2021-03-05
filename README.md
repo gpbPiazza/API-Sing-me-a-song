@@ -30,7 +30,7 @@ Rules for a random recommendation:
 - In case if any music got in this scores, must return a random music independent his score.
 - In case of any recommendation wheren't created, must return error status 404.
 
-### Documentaion:
+### Documentation:
 
 <a href="https://www.notion.so/Sing-me-a-song-documentation-aa54896e890a43dbba26e2bf3be66b3f">"Link"</a> 
 
