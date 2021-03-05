@@ -6,7 +6,7 @@
 
 ## Objective
 <p>
-   The project Sing me asong was developed throughout the Bootcamp of "Respode Aí". This project its a API aplication and has the object to register genres, recommendations and return random recommendations. 
+   The project Sing me asong was developed throughout the Bootcamp of "Respode Aí". This project its a API application and has the objective to register genres, recommendations and return random recommendations. 
 </p>
 
 ### Features
@@ -16,17 +16,17 @@
 - **POST** `/recommendations/:id/upvote` and `/recommendations/:id/downvote`
 - **GET** `/recommendations/random`
 
-### Busines Rules
+### Business Rules
 As a user i:
 - Would like create a new genre if this genre doesnt exist.
 - Want se all genres created.
 - Would like to create one recommendation that must contain one genre.
-- Would like to up vote this recommendation or down vote, if this recommendation reachs score equal a -5 the recomendation is deleted.
-- Want receive one random recomendation, folowing this rules.
+- Would like to up vote this recommendation or down vote, if this recommendation reachs score equal a -5 the recommendation is deleted.
+- Want receive one random recommendation, folowing this rules.
 
 Rules for a random recommendation:
-- **70% of times**: one músic with score bigger than 10 must be recomendated randomly.
-- **30% of times**: one músic with score between -5 and 10 must be recomendated randomly.
+- **70% of times**: one music with score bigger than 10 must be recomendated randomly.
+- **30% of times**: one music with score between -5 and 10 must be recomendated randomly.
 - In case if any music got in this scores, must return a random music independent his score.
 - In case of any recommendation wheren't created, must return error status 404.
 
